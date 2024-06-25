@@ -1,0 +1,60 @@
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative; /* Agregamos posición relativa */
+}
+
+.pie-pagina {
+    width: 100%;
+    background: linear-gradient(90deg, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 48%, rgb(0, 0, 0) 100%);
+    font-family: Verdana;
+    padding-left: 0px;
+    padding-right: 0px;
+    text-align: right;
+    justify-content: left;
+    bottom: 0; /* Lo fijamos en la parte inferior */
+    left: 0; /* Alineado a la izquierda */
+    right: 0; /* Alineado a la derecha */
+    color: #ffffff;
+    z-index: 1; /* Aseguramos que esté por encima de otros elementos */
+}
+
+.pie-pagina .grupo-1 {
+    width: auto;
+    max-width: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 100px;
+}
+
+.pie-pagina .grupo-1 .box figure {
+    width: auto;
+    height: auto;
+    padding: 10px;
+    margin-bottom: 0px;
+    display: flex;
+    justify-content: flex;
+    align-items: center;
+}
+
+.tex2 {
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    text-align: right;
+}
+
+.pie-pagina .grupo-1 .box figure img {
+    width: 90px;
+}
+.whatsapp-btn{
+    width: 30px;
+    height: 30px;
+}

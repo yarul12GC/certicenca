@@ -1,0 +1,141 @@
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transition: 0.7s;
+    z-index: 10;
+	background: linear-gradient(90deg, rgba(106,0,0,1) 0%, rgba(255,0,9,1) 48%, rgba(255,39,76,1) 100%);
+
+}
+header.abajo{
+	background: linear-gradient(90deg, rgba(106,0,0,1) 0%, rgba(255,0,9,1) 48%, rgba(255,39,76,1) 100%);
+    padding: 10px 10px;
+}
+
+.logo{
+  display:flex;
+  width: 35px;
+  height:35px;
+  justify-content: center;
+
+}
+
+/*
+menu desplegable
+*/
+
+
+.navegacion{
+	width: auto;
+	margin-right: 50px;
+    margin-left: 30px;
+	background: rgba(255, 255, 255, 0);
+}
+
+.navegacion ul{
+	list-style: none;
+}
+
+
+.menu > li{
+	position: relative;
+	display: inline-block;
+    align-self: auto;
+
+    
+}
+.menu > li > a{
+	display: flex;
+	padding: 10px 15px;
+    margin-top: 5px;
+	color: #ffffff;
+	font-family: Verdana;
+    font-size: 14px;
+	text-decoration: none;
+}
+
+.menu li a:hover{
+	background-color: #000000;
+	color: #ffffff;
+	transition: all .3s;
+}
+.menu2{
+    justify-content: right;
+}
+.menu2 > li{
+	position: relative;
+	display: inline-block;
+
+    
+}
+.menu2 > li > a{
+	display: flex;
+	padding: 10px 15px;
+    margin-top: 5px;
+	color: #ffffff;
+	font-family: Verdana;
+    font-size: 14px;
+	text-decoration: none;
+}
+
+.menu2 li a:hover{
+	background-color: #000000;
+	color: #ffffff;
+	transition: all .3s;
+}
+
+/* Submenu*/
+
+.submenu{
+	position: absolute;
+	background-color: #ff0000;
+	width: 180%;
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity 1.5s;
+
+}
+
+.submenu li a{
+	display: block;
+	padding: 7px;
+	color: #fff;
+	font-family: 'verdana';
+    font-size: small;
+	text-decoration: none;
+    list-style: none;
+
+
+}
+
+.menu li:hover .submenu{
+	visibility: visible;
+	opacity: 1;
+}
+
+
+header.abajo .logo,
+header.abajo ul li a{
+    color: rgb(255, 255, 255);
+}
+
+@media only screen and (max-width: 600px) {
+	.menu,
+	.menu2 {
+		display: none;
+	}
+
+	.navegacion {
+		align-items: flex-end;
+	}
+
+	.menu-hamburguesa {
+		display: block;
+		font-size: 20px;
+		cursor: pointer;
+		color: white;
+	}
+}

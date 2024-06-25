@@ -1,0 +1,80 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contenedor{
+    font-family: Verdana;
+    text-align: center;
+    width: 98%;
+    height: auto;
+    background: rgb(255, 255, 255);
+    margin: auto;
+    padding: 20px;
+    margin-top: 8ch;
+    font-family: Verdana;
+    color: #000000;
+    justify-content: center;
+    border-radius: 5px;
+    box-shadow: 7px 13px 37px #000000;
+}
+
+/* Consulta de medios para pantallas más pequeñas, como las de los celulares */
+@media screen and (max-width: 768px) {
+    .zona1 {
+        width: auto;
+        margin-top: 2ch; /* Ajusta el margen superior según tus preferencias */
+        padding: 10px; /* Ajusta el espaciado interno según tus preferencias */
+    }
+}
+
+th,
+td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+tr:hover {
+    background-color: #e8e8e8;
+}
+
+.nuevo {
+    float: left;
+    font-family: Verdana;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    font-size: 14px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.nuevo:hover {
+    background-color: #248d29;
+    text-decoration: none;
+    color: #fff;
+}
+
+
+.dropdown-menu a:hover {
+    background-color: #b11010;
+    color: white;
+}
+
+label {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+h5 {
+    text-align: center;
+}

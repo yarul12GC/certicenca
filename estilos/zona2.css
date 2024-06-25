@@ -1,0 +1,87 @@
+.zona2{
+    text-align: center;
+justify-content: center;
+font-family: Verdana;
+}
+.logoini {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #ffffff00;
+}
+h1{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #d20000;
+}
+
+div.botons{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-decoration: none;
+
+    width: 92%;
+    height: auto;
+    margin: auto;
+    padding: 20px;
+    margin-top: 0ch;
+}
+
+div.contenedor{
+    width: 240px;
+    right: 80px;
+}
+div.contenedor1{
+    width: 240px;
+    right: 80px;
+}
+
+/*al pasar el corsor*/
+
+div.contenedor1{
+    background-color: #ffffff00;
+    animation: spin 4s ease-in-out forwards;
+}
+
+@keyframes spin {
+    0%, 100% {
+        transform: rotateX(0deg);
+    }
+    50% {
+        transform: rotateX(360deg);
+    }
+}
+div#sinco{
+    background-color: #ff0000;
+        border-style: solid;
+    border-width: 8px;
+    border-color: #fff;
+}div#seis{
+    background-color: #ff2e2e ;
+        border-style: solid;
+    border-width: 8px;
+    border-color: #fff;
+}div#siete{
+    background-color: #ff3b3b;
+        border-style: solid;
+    border-width: 8px;
+    border-color: #fff;
+}
+
+img.icon{
+    display: block;
+    margin: 10px auto;
+    width: 70px;
+    padding: 15px;
+}
+p.texto{
+    font-family: Verdana;
+    font-size: 1em;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 1ch;
+    opacity: .8;
+    text-decoration: none;
+
+}

@@ -1,0 +1,80 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url('../media/post_ap-155_comercio-exterior.jpg'); /* Agrega la ruta de tu imagen de fondo */
+  background-size: cover; /* Hace que la imagen de fondo cubra todo el cuerpo */
+}
+
+.form-register {
+  width: 90%;
+  max-width: 400px;
+  height: auto;
+  background: #00000061;
+  padding: 30px;
+  border-radius: 5px;
+  font-family: Verdana;
+  color: #ffffff;
+  text-align: center;
+}
+
+.form-register h3 {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.controls {
+  width: 100%;
+  background: #e3eaf0a7;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  border: 1px solid #e3eaf0a7;
+  font-size: 18px;
+}
+
+.form-register p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.form-register a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.form-register a:hover {
+  text-decoration: underline;
+}
+
+.form-register .botons {
+  width: 100%;
+  background-color: #ff0000;
+  padding: 12px;
+  font-family: Verdana;
+  color: white;
+  margin: 16px 0;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+}
+
+.botons:hover {
+  background-color: #ff5353;
+}
+
+.logo {
+  width: 80%;
+  max-width: 200px;
+  margin-bottom: 20px;
+}

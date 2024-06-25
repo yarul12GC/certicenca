@@ -1,0 +1,22 @@
+
+#loading-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    z-index: 1000; 
+}
+
+#loading-gif {
+    width: 100px;
+}
+
+#loading-message {
+    margin-top: 10px; 
+}
