@@ -1,73 +1,86 @@
 <?php
-require 'vendor/autoload.php';
-use Firebase\JWT\JWT;
-use Firebase\JWT\ExpiredException;
-use Firebase\JWT\SignatureInvalidException;
-use Firebase\JWT\BeforeValidException;
-
 include('conexion.php');
 
-$key = 'your_secret_key'; 
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Iniciar sesión
     session_start();
 
+    // Sanitizar y validar el correo electrónico
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo '<script>
+                alert("Correo electrónico inválido.");
+                window.location = "index.php";
+              </script>';
+        exit();
+    }
+
+    // Validar la contraseña
     $contrasena = $_POST['contrasena'];
+    if (empty($contrasena)) {
+        echo '<script>
+                alert("Por favor, ingrese su contraseña.");
+                window.location = "index.php";
+              </script>';
+        exit();
+    }
+
+    // Hashear la contraseña
     $contrasena = hash('sha512', $contrasena);
 
-    $stmt = mysqli_prepare($conexion, "SELECT * FROM usuarios WHERE email = ? AND contrasena = ?");
+    // Preparar la consulta
+    $stmt = mysqli_prepare($conexion, "SELECT usuarioID, tipoUsuarioID FROM usuarios WHERE email = ? AND contrasena = ?");
+    if ($stmt === false) {
+        echo '<script>
+                alert("Error en la consulta.");
+                window.location = "index.php";
+              </script>';
+        exit();
+    }
+
+    // Enlazar los parámetros y ejecutar la consulta
     mysqli_stmt_bind_param($stmt, 'ss', $email, $contrasena);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_store_result($stmt);
 
+    // Verificar si se encontró el usuario
     if (mysqli_stmt_num_rows($stmt) > 0) {
-        mysqli_stmt_bind_result($stmt, $usuarioID, $matricula, $nombre, $apellidoPaterno, $apellidoMaterno, $email, $contrasena, $tipoEstudioID, $programaID, $modalidadID, $folioControl, $estatus, $tipoUsuarioID, $fechaRegistro);
+        // Vincular los resultados
+        mysqli_stmt_bind_result($stmt, $usuarioID, $tipoUsuarioID);
         mysqli_stmt_fetch($stmt);
 
-        $payload = array(
-            "iss" => "http://localhost",                                // Emisor del token (puede ser tu dominio)
-            "aud" => "http://localhost",                                // Audiencia del token (puede ser tu dominio)
-            "iat" => time(), 
-            "nbf" => time(), 
-            "exp" => time() + 3600, 
-            "data" => array(
-                "id" => $usuarioID,
-                "email" => $email,
-                "tipoUsuarioID" => $tipoUsuarioID
-            )
-        );
+        // Guardar el ID del usuario y el email en la sesión
+        $_SESSION['usuarioID'] = $usuarioID;
+        $_SESSION['email'] = $email;
 
-        try {
-            $jwt = JWT::encode($payload, $key, 'HS256');
-
-            setcookie('jwt', $jwt, [
-                'expires' => time() + 3600,
-                'path' => '/',
-                'domain' => 'localhost',
-                'secure' => false, 
-                'httponly' => true,
-                'samesite' => 'Lax',
-            ]);
-
-            $_SESSION['email'] = $email;
-            $_SESSION['jwt'] = $jwt;
-
-            header("Location: verificar.php");
-            exit();
-        } catch (Exception $e) {
-            echo '<script> 
-                    alert("Error al generar el token JWT: ' . $e->getMessage() . '");
-                    window.location = "index.php";
-                  </script>';
-            exit();
+        // Redirigir según el tipo de usuario
+        switch ($tipoUsuarioID) {
+            case 1:
+                header("Location: admin/index.php");
+                break;
+            case 2:
+                header("Location: usuarioadm/index.php");
+                break;
+            case 3:
+                header("Location: cessit/index.php");
+                break;
+            case 4:
+                header("Location: pedimento-/user/panel.php");
+                break;
+            default:
+                echo '<script> 
+                        alert("Tipo de usuario desconocido. Por favor, contacte al administrador.");
+                        window.location = "index.php";
+                      </script>';
+                break;
         }
+        exit();
     } else {
-        echo '<script> 
+        // Si el usuario no existe o la contraseña es incorrecta
+        echo '<script>
                 alert("El usuario no existe o las credenciales son incorrectas. Por favor, verifique los datos.");
                 window.location = "index.php";
               </script>';
         exit();
     }
 }
-?>

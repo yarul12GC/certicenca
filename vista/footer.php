@@ -12,11 +12,10 @@
     <hr>
         <footer class="pie-pagina">
             <div class="grupo-1">
-                <div class="box">
+                <div class="box" onclick="redirectToIndex()">
                     <figure>
-                        <img src="..\media/locenca.png">
-                        <small>  &copy; 2024 - Software de certificados y documentos oficiales CERTICENC V0.1</small>
-
+                        <img src="../media/locenca.png">
+                        <small>&copy; 2024 - Software de certificados y documentos oficiales CERTICENC V0.1</small>
                     </figure>
                 </div>
                 <div class="tex2">
@@ -32,3 +31,8 @@
 
 </body>
 </html>
+<script>
+    function redirectToIndex() {
+        window.location.href = "../usuarioadm/index.php";
+    }
+</script>

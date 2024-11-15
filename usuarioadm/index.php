@@ -7,6 +7,7 @@ include('../vista/mensaje.php');
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,65 +20,68 @@ include('../vista/mensaje.php');
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Home Admin</title>
 </head>
+
 <body>
-<header>
-    <?php
-    include '../vista/headeradm.php'
-    ?>
-</header>
-<section class="zona1">
-<div class="zona2">
-<img src="..\media/locenca.png" alt="" class="logoini">
-<h1><strong>CERTICENCA.</strong></h1>
-<br>
-<h5><strong>Obciones Rapidas</strong></h5>
-<div class="botons">
+    <header>
+        <?php include '../vista/headeradm.php'; ?>
+    </header>
+    <section class="zona1">
+        <div class="zona2">
+            <img src="..\media/locenca.png" alt="" class="logoini">
+            <h1><strong>CERTICENCA.</strong></h1>
+            <br>
+            <h5><strong>Obciones Rapidas</strong></h5>
+            <div class="botons">
 
-            <div class="contenedor1" id="sinco">
-                <a href="../usuarioadm/usuarios.php"><img src="../media/equipo.png" class="icon"></a>
-                <p class="texto">USUARIOS.</p>
-            </div>
+                <div class="contenedor1" id="sinco">
+                    <a href="../usuarioadm/usuarios.php"><img src="../media/equipo.png" class="icon"></a>
+                    <p class="texto">USUARIOS.</p>
+                </div>
 
-            <div class="contenedor1" id="seis">
-                <a href="../usuarioadm/certificados.php"><img src="../media/subir-archivo.png" class="icon"></a>
-                <p class="texto">SUBIR CERTIFICADOS.</p>
-            </div>
+                <div class="contenedor1" id="seis">
+                    <a href="../usuarioadm/certificados.php"><img src="../media/subir-archivo.png" class="icon"></a>
+                    <p class="texto">SUBIR CERTIFICADOS.</p>
+                </div>
 
-            <div class="contenedor" id="siete">
-            <div class="ayuda">
-                <div class="icon-container">
-                    <a href="https://wa.me/+5217295279859" class="icon" target="_blank" rel="noopener noreferrer">
-                        <img src="../media/whatsapp.png" class="iconwats" alt="Icono de WhatsApp">
-                    </a>
-                    <span class="tooltip">Si necesitas ayuda, ve a nuestra conversacion de WhatsApp</span>
+                <div class="contenedor" id="siete">
+                    <div class="ayuda">
+                        <div class="icon-container">
+                            <a href="https://wa.me/+5217295279859" class="icon" target="_blank" rel="noopener noreferrer">
+                                <img src="../media/whatsapp.png" class="iconwats" alt="Icono de WhatsApp">
+                            </a>
+                            <span class="tooltip">Si necesitas ayuda, ve a nuestra conversacion de WhatsApp</span>
+                        </div>
+                    </div>
+                    <p class="texto">AYUDA.</p>
+                </div>
+
+
+                <div class="contenedor1" id="seis">
+                    <a href="../cenca24/contribuyente.php"><img src="../media/aduana.png" class="icon"></a>
+                    <p class="texto">SECIIT.</p>
+                </div>
+                <div class="contenedor1" id="seis">
+                    <a href="../cenca24v2/contribuyente.php"><img src="../media/aduana.png" class="icon"></a>
+                    <p class="texto">ANexo 24 v2.</p>
+                </div>
+
+                <div class="contenedor1" id="sinco">
+                    <a href="../admin/index.php"><img src="../media/certificado.png" class="icon"></a>
+                    <p class="texto">CERTICENCA C.</p>
+                </div>
+                <div class="contenedor1" id="sinco">
+                    <a href="../pedimento-/admin/panel.php"><img src="../media/agente-de-aduanas.png" class="icon"></a>
+                    <p class="texto">pedimento</p>
                 </div>
             </div>
-                <p class="texto">AYUDA.</p>
-            </div>
-
-
-            <div class="contenedor1" id="seis">
-                <a href="../cenca24/contribuyente.php"><img src="../media/aduana.png" class="icon"></a>
-                <p class="texto">SECCIT.</p>
-            </div>
-
-            <div class="contenedor1" id="sinco">
-                <a href="../admin/index.php"><img src="../media/certificado.png" class="icon"></a>
-                <p class="texto">CERTICENCA C.</p>
-            </div>
-            <div class="contenedor1" id="sinco">
-                <a href="http://localhost/pedimento/admin/index.php"><img src="../media/certificado.png" class="icon"></a>
-                <p class="texto">PEDIMENTO</p>
-            </div>
-
         </div>
-</div>
 
-</section>
+    </section>
 
-<footer>
-    <?php include '../vista/footer.php'; ?>
-</footer>
-    
+    <footer>
+        <?php include '../vista/footer.php'; ?>
+    </footer>
+
 </body>
+
 </html>

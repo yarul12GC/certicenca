@@ -29,9 +29,7 @@ include('../vista/mensaje.php');
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#subirmM"> Subir Material </button>
         <br>
         <br>
-<?php
-// Incluir el archivo de conexión a la base de datos
-include('conexion.php');
+        <?php
 
 // Consulta para obtener los datos requeridos
 $query = "SELECT u.Nombre AS NombreUsuario, p.NombrePrograma, a.NombreArchivo, am.AsignacionID

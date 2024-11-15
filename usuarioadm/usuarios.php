@@ -41,7 +41,7 @@ include('../vista/mensaje.php');
                         <th scope="col">Matricula</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Email</th>
-                        <th scope="col">Nombre</th>
+
                         <th scope="col">Apellido</th>
                         <th scope="col">Folio de Control</th>
                         <th scope="col">Estatus</th>

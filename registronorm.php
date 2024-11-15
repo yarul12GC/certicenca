@@ -1,10 +1,8 @@
 <?php
-require 'vendor/autoload.php'; // Incluyendo la librería de JWT
-use Firebase\JWT\JWT;
-use Firebase\JWT\Key;
-
-function generarMatricula($conexion) {
+function generarMatricula()
+{
     $anio_actual = date('Y');
+    $conexion = new PDO("mysql:host=localhost;dbname=certicenca", "root", "");
 
     // Generar matrícula única
     do {
@@ -18,7 +16,8 @@ function generarMatricula($conexion) {
     return $matricula;
 }
 
-function generarFolioControl($conexion) {
+function generarFolioControl($conexion)
+{
     // Obtener el último ID insertado
     $consulta = $conexion->query("SELECT MAX(usuarioID) AS max_id FROM usuarios");
     $ultimo_id = $consulta->fetch(PDO::FETCH_ASSOC)['max_id'];
@@ -28,33 +27,6 @@ function generarFolioControl($conexion) {
 
     return date('Y') . $nuevo_id;
 }
-
-function registerInSecondarySystem($email, $hashedPassword) {
-    $ch = curl_init('http://localhost/pedimento/register.php'); // Ajuste para entorno local
-    curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query([
-        'email' => $email,
-        'password' => $hashedPassword,
-    ]));
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    $response = curl_exec($ch);
-    curl_close($ch);
-
-    return $response;
-}
-
-function createJWT($userId, $key) {
-    $payload = [
-        'iss' => 'http://localhost', // Ajuste para entorno local
-        'sub' => $userId,
-        'iat' => time(),
-        'exp' => time() + 3600, // 1 hora de expiración
-    ];
-
-    return JWT::encode($payload, $key, 'HS256');
-}
-
-$key = 'your_secret_key'; // Clave secreta para firmar el JWT
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombre = isset($_POST["Nombre"]) ? trim($_POST["Nombre"]) : "";
@@ -72,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo '<p class="text-danger">Por favor, completa todos los campos.</p>';
     } else {
         try {
-            $conexion = new PDO("mysql:host=localhost;dbname=certificados", "root", "");
+            $conexion = new PDO("mysql:host=localhost;dbname=certicenca", "root", "");
             $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             $consultaExistencia = $conexion->prepare("SELECT email FROM usuarios WHERE email = :email");
@@ -82,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($consultaExistencia->rowCount() > 0) {
                 echo '<p class="text-danger">El usuario ya existe. Inténtalo con otro correo.</p>';
             } else {
-                $matricula = generarMatricula($conexion);
+                $matricula = generarMatricula();
                 $folioControl = generarFolioControl($conexion);
                 $hashedPassword = hash('sha512', $contrasena);
                 $fechaRegistro = date('Y-m-d H:i:s'); // Obtenemos la fecha y hora actual
@@ -105,30 +77,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 $consultaInsertar->execute();
 
-                // Registrar en el sistema secundario
-                $response = registerInSecondarySystem($email, $hashedPassword);
+                session_start();
+                $_SESSION['registro_exitoso'] = true;
 
-                if ($response) {
-                    $userId = $conexion->lastInsertId();
-                    $jwt = createJWT($userId, $key);
-
-                    setcookie('jwt', $jwt, [
-                        'expires' => time() + 3600,
-                        'path' => '/',
-                        'domain' => 'localhost', // Dominio común para entorno local
-                        'secure' => false, // Ajuste para entorno local (false)
-                        'httponly' => true,
-                        'samesite' => 'Lax',
-                    ]);
-
-                    session_start();
-                    $_SESSION['registro_exitoso'] = true; 
-
-                    header("Location: index.php");
-                    exit();
-                } else {
-                    echo '<p class="text-danger">Error al registrar en el sistema secundario.</p>';
-                }
+                header("Location: ../index.php");
+                exit();
             }
             $conexion = null;
         } catch (PDOException $e) {
@@ -136,7 +89,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 }
-
 session_start();
 if (isset($_SESSION['registro_exitoso']) && $_SESSION['registro_exitoso'] == true) {
     echo '<div class="alert alert-success" role="alert">
@@ -144,4 +96,3 @@ if (isset($_SESSION['registro_exitoso']) && $_SESSION['registro_exitoso'] == tru
           </div>';
     unset($_SESSION['registro_exitoso']); // Eliminamos la variable de sesión
 }
-?>
